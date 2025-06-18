@@ -204,7 +204,7 @@ struct ContentView: View {
                     return
                 }
 
-                guard let a = folderA, let b = folderB, let out = outputFolder else {
+                guard (selectionMode == .manualInput || folderA != nil), let b = folderB, let out = outputFolder else {
                     alertMessage = IdentifiableString(value: "Please select all three folders.".localized)
                     return
                 }
@@ -226,7 +226,7 @@ struct ContentView: View {
                 currentProgress = 0
                 copiedFiles = []
                 Task {
-                    let result = await syncFiles(from: a, and: b, to: out)
+                    let result = await syncFiles(from: folderA ?? URL(fileURLWithPath: "/"), and: b, to: out)
                     await MainActor.run {
                         logMessages = result.log
                         totalCount = result.total
@@ -408,20 +408,23 @@ struct ContentView: View {
         if selectionMode == .manualInput {
             aFiles = []
         } else {
-            guard let readFiles = try? fm.contentsOfDirectory(at: folderA, includingPropertiesForKeys: nil) else {
+            guard FileManager.default.fileExists(atPath: folderA.path) else {
                 return (["Failed to read Folder A".localized], 0, [])
             }
-            aFiles = readFiles
+            aFiles = (try? fm.contentsOfDirectory(at: folderA, includingPropertiesForKeys: nil)) ?? []
         }
         let bFiles = (try? fm.contentsOfDirectory(atPath: folderB.path)) ?? []
         let bFileDict = Dictionary(uniqueKeysWithValues: bFiles.map { ($0.lowercased(), $0) })
 
         let selectedManualEntries: [String] = {
             if selectionMode == .manualInput {
-                return inputFilenames
+                // Separate entries into those with extensions and those without
+                let entries = inputFilenames
                     .replacingOccurrences(of: "\r", with: "\n")
                     .components(separatedBy: CharacterSet(charactersIn: " \n"))
                     .filter { !$0.isEmpty }
+                    .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
+                return entries
             } else {
                 return []
             }
@@ -441,7 +444,11 @@ struct ContentView: View {
         // Prepare all candidate filenames to copy
         let allCandidates: [String]
         if selectionMode == .manualInput {
-            allCandidates = selectedManualEntries
+            let entriesWithExt = selectedManualEntries.filter { $0.contains(".") }
+            let entriesWithoutExt = selectedManualEntries.filter { !$0.contains(".") }
+            allCandidates = entriesWithExt + entriesWithoutExt.flatMap { base in
+                rawExtensions.map { ext in "\(base).\(ext)" }
+            }
         } else {
             allCandidates = baseNames.flatMap { base in
                 rawExtensions.map { ext in "\(base).\(ext)" }
