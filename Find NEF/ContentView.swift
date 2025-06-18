@@ -55,6 +55,7 @@ struct ContentView: View {
     @State private var alertMessage: IdentifiableString?
     @State private var copiedFiles: [URL] = []
     @AppStorage("hasLaunchedBefore") private var hasLaunchedBefore: Bool = false
+    @State private var showAdvancedOptions = false
 
     var body: some View {
         VStack(spacing: 18) {
@@ -173,20 +174,31 @@ struct ContentView: View {
                 }
             }
 
-            VStack(alignment: .leading, spacing: 2) {
-                Text("Extensions for Folder A (comma separated, no dot):".localized)
-                    .font(.caption)
-                TextField("e.g. jpg, jpeg, png".localized, text: $imageExtensionsInput)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                Text("Example: jpg, jpeg, png".localized).font(.caption).foregroundColor(.gray)
+            DisclosureGroup("Advanced Settings".localized, isExpanded: $showAdvancedOptions) {
+                VStack(alignment: .leading, spacing: 8) {
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("Extensions for Folder A (comma separated, no dot):".localized)
+                            .font(.caption)
+                        TextField("e.g. jpg, jpeg, png".localized, text: $imageExtensionsInput)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                        Text("Example: jpg, jpeg, png".localized).font(.caption).foregroundColor(.gray)
+                    }
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("Extensions for Folder B (comma separated, no dot):".localized)
+                            .font(.caption)
+                        TextField("e.g. acr, NEF, xmp".localized, text: $rawExtensionsInput)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                        Text("Example: cr2, dng, arw".localized).font(.caption).foregroundColor(.gray)
+                    }
+                    Toggle("Skip files that already exist in output folder".localized, isOn: $skipExistingFiles)
+                        .disabled(isSyncing)
+                    Toggle("Overwrite files that already exist in output folder".localized, isOn: $overwriteExistingFiles)
+                        .disabled(isSyncing)
+                        .help("If both skip and overwrite are off, existing files will be skipped with a log message.".localized)
+                }
+                .padding(.top, 6)
             }
-            VStack(alignment: .leading, spacing: 2) {
-                Text("Extensions for Folder B (comma separated, no dot):".localized)
-                    .font(.caption)
-                TextField("e.g. acr, NEF, xmp".localized, text: $rawExtensionsInput)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                Text("Example: cr2, dng, arw".localized).font(.caption).foregroundColor(.gray)
-            }
+            .animation(.easeInOut, value: showAdvancedOptions)
 
             Picker("File Selection Mode".localized, selection: $selectionMode) {
                 ForEach(FileSelectionMode.allCases) { mode in
@@ -205,11 +217,6 @@ struct ContentView: View {
                 }
             }
 
-            Toggle("Skip files that already exist in output folder".localized, isOn: $skipExistingFiles)
-                .disabled(isSyncing)
-            Toggle("Overwrite files that already exist in output folder".localized, isOn: $overwriteExistingFiles)
-                .disabled(isSyncing)
-                .help("If both skip and overwrite are off, existing files will be skipped with a log message.".localized)
 
             HStack(spacing: 12) {
                 Button {
