@@ -58,100 +58,118 @@ struct ContentView: View {
 
     var body: some View {
         VStack(spacing: 18) {
-            // Folder A
-            HStack {
-                Text("Folder A (Photos):".localized)
-                Spacer()
-                Button("Select".localized) {
-                    if let url = selectFolder() {
-                        folderA = url
-                        folderAPath = url.path
-                    }
-                }
-                VStack(alignment: .leading, spacing: 2) {
-                    Text(folderA?.path ?? "None".localized)
-                        .font(.caption2)
-                        .lineLimit(nil)
-                        .contextMenu {
-                            if let path = folderA?.path {
-                                Button("Copy Path") {
-                                    NSPasteboard.general.clearContents()
-                                    NSPasteboard.general.setString(path, forType: .string)
+            // Folder A GroupBox
+            GroupBox(label: Label("Folder A (Photos):".localized, systemImage: "folder")) {
+                HStack(alignment: .top, spacing: 12) {
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(folderA?.path ?? "None".localized)
+                            .font(.caption2)
+                            .foregroundStyle(.secondary)
+                            .lineLimit(nil)
+                            .contextMenu {
+                                if let path = folderA?.path {
+                                    Button("Copy Path") {
+                                        NSPasteboard.general.clearContents()
+                                        NSPasteboard.general.setString(path, forType: .string)
+                                    }
                                 }
                             }
-                        }
-                    HStack(spacing: 4) {
-                        Image(systemName: needsReselectFolderA ? "xmark.circle.fill" : "checkmark.circle.fill")
-                            .foregroundColor(needsReselectFolderA ? Color.red.opacity(0.8) : Color.accentColor)
-                            .help(needsReselectFolderA ? "Folder A path is invalid or not a folder.".localized : "Folder A path is valid (restored from last session).".localized)
-                        Text(needsReselectFolderA ? "Invalid".localized : "Valid".localized)
-                            .foregroundColor(needsReselectFolderA ? .red : .green)
-                            .font(.caption)
+                        Label(
+                            needsReselectFolderA ? "Invalid".localized : "Valid".localized,
+                            systemImage: needsReselectFolderA ? "xmark.circle.fill" : "checkmark.circle.fill"
+                        )
+                        .labelStyle(.iconOnly)
+                        .foregroundColor(needsReselectFolderA ? Color.red.opacity(0.8) : Color.accentColor)
+                        .help(needsReselectFolderA ? "Folder A path is invalid or not a folder.".localized : "Folder A path is valid (restored from last session).".localized)
+                        .font(.caption)
                     }
+                    Spacer()
+                    Button {
+                        if let url = selectFolder() {
+                            folderA = url
+                            folderAPath = url.path
+                        }
+                    } label: {
+                        Label("Select".localized, systemImage: "folder.badge.plus")
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .controlSize(.small)
                 }
             }
-            // Folder B
-            HStack {
-                Text("Folder B (RAW/XMP):".localized)
-                Spacer()
-                Button("Select".localized) {
-                    if let url = selectFolder() {
-                        folderB = url
-                        folderBPath = url.path
-                    }
-                }
-                VStack(alignment: .leading, spacing: 2) {
-                    Text(folderB?.path ?? "None".localized)
-                        .font(.caption2)
-                        .lineLimit(nil)
-                        .contextMenu {
-                            if let path = folderB?.path {
-                                Button("Copy Path") {
-                                    NSPasteboard.general.clearContents()
-                                    NSPasteboard.general.setString(path, forType: .string)
+            // Folder B GroupBox
+            GroupBox(label: Label("Folder B (RAW/XMP):".localized, systemImage: "externaldrive")) {
+                HStack(alignment: .top, spacing: 12) {
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(folderB?.path ?? "None".localized)
+                            .font(.caption2)
+                            .foregroundStyle(.secondary)
+                            .lineLimit(nil)
+                            .contextMenu {
+                                if let path = folderB?.path {
+                                    Button("Copy Path") {
+                                        NSPasteboard.general.clearContents()
+                                        NSPasteboard.general.setString(path, forType: .string)
+                                    }
                                 }
                             }
-                        }
-                    HStack(spacing: 4) {
-                        Image(systemName: needsReselectFolderB ? "xmark.circle.fill" : "checkmark.circle.fill")
-                            .foregroundColor(needsReselectFolderB ? Color.red.opacity(0.8) : Color.accentColor)
-                            .help(needsReselectFolderB ? "Folder B path is invalid or not a folder.".localized : "Folder B path is valid (restored from last session).".localized)
-                        Text(needsReselectFolderB ? "Invalid".localized : "Valid".localized)
-                            .foregroundColor(needsReselectFolderB ? .red : .green)
-                            .font(.caption)
+                        Label(
+                            needsReselectFolderB ? "Invalid".localized : "Valid".localized,
+                            systemImage: needsReselectFolderB ? "xmark.circle.fill" : "checkmark.circle.fill"
+                        )
+                        .labelStyle(.iconOnly)
+                        .foregroundColor(needsReselectFolderB ? Color.red.opacity(0.8) : Color.accentColor)
+                        .help(needsReselectFolderB ? "Folder B path is invalid or not a folder.".localized : "Folder B path is valid (restored from last session).".localized)
+                        .font(.caption)
                     }
+                    Spacer()
+                    Button {
+                        if let url = selectFolder() {
+                            folderB = url
+                            folderBPath = url.path
+                        }
+                    } label: {
+                        Label("Select".localized, systemImage: "folder.badge.plus")
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .controlSize(.small)
                 }
             }
-            // Output Folder
-            HStack {
-                Text("Output Folder:".localized)
-                Spacer()
-                Button("Select".localized) {
-                    if let url = selectFolder() {
-                        outputFolder = url
-                        outputFolderPath = url.path
-                    }
-                }
-                VStack(alignment: .leading, spacing: 2) {
-                    Text(outputFolder?.path ?? "None".localized)
-                        .font(.caption2)
-                        .lineLimit(nil)
-                        .contextMenu {
-                            if let path = outputFolder?.path {
-                                Button("Copy Path") {
-                                    NSPasteboard.general.clearContents()
-                                    NSPasteboard.general.setString(path, forType: .string)
+            // Output Folder GroupBox
+            GroupBox(label: Label("Output Folder:".localized, systemImage: "folder.fill.badge.plus")) {
+                HStack(alignment: .top, spacing: 12) {
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(outputFolder?.path ?? "None".localized)
+                            .font(.caption2)
+                            .foregroundStyle(.secondary)
+                            .lineLimit(nil)
+                            .contextMenu {
+                                if let path = outputFolder?.path {
+                                    Button("Copy Path") {
+                                        NSPasteboard.general.clearContents()
+                                        NSPasteboard.general.setString(path, forType: .string)
+                                    }
                                 }
                             }
-                        }
-                    HStack(spacing: 4) {
-                        Image(systemName: needsReselectOutputFolder ? "xmark.circle.fill" : "checkmark.circle.fill")
-                            .foregroundColor(needsReselectOutputFolder ? Color.red.opacity(0.8) : Color.accentColor)
-                            .help(needsReselectOutputFolder ? "Output folder is invalid or not writable.".localized : "Output folder is valid (restored from last session).".localized)
-                        Text(needsReselectOutputFolder ? "Invalid".localized : "Valid".localized)
-                            .foregroundColor(needsReselectOutputFolder ? .red : .green)
-                            .font(.caption)
+                        Label(
+                            needsReselectOutputFolder ? "Invalid".localized : "Valid".localized,
+                            systemImage: needsReselectOutputFolder ? "xmark.circle.fill" : "checkmark.circle.fill"
+                        )
+                        .labelStyle(.iconOnly)
+                        .foregroundColor(needsReselectOutputFolder ? Color.red.opacity(0.8) : Color.accentColor)
+                        .help(needsReselectOutputFolder ? "Output folder is invalid or not writable.".localized : "Output folder is valid (restored from last session).".localized)
+                        .font(.caption)
                     }
+                    Spacer()
+                    Button {
+                        if let url = selectFolder() {
+                            outputFolder = url
+                            outputFolderPath = url.path
+                        }
+                    } label: {
+                        Label("Select".localized, systemImage: "folder.badge.plus")
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .controlSize(.small)
                 }
             }
 
@@ -193,62 +211,72 @@ struct ContentView: View {
                 .disabled(isSyncing)
                 .help("If both skip and overwrite are off, existing files will be skipped with a log message.".localized)
 
-            Button("Validate Folder Paths".localized) {
-                validateRestoredPaths()
-            }
-            .disabled(isSyncing)
-
-            Button("Start Sync".localized) {
-                // Prevent syncing if any folder needs to be reselected
-                if needsReselectFolderA || needsReselectFolderB || needsReselectOutputFolder {
-                    return
+            HStack(spacing: 12) {
+                Button {
+                    validateRestoredPaths()
+                } label: {
+                    Label("Validate Folder Paths".localized, systemImage: "checkmark.shield")
                 }
+                .buttonStyle(.borderedProminent)
+                .controlSize(.small)
+                .disabled(isSyncing)
 
-                guard (selectionMode == .manualInput || folderA != nil), let b = folderB, let out = outputFolder else {
-                    alertMessage = IdentifiableString(value: "Please select all three folders.".localized)
-                    return
-                }
+                Button {
+                    // Prevent syncing if any folder needs to be reselected
+                    if needsReselectFolderA || needsReselectFolderB || needsReselectOutputFolder {
+                        return
+                    }
 
-                var isDirectory: ObjCBool = false
-                if !FileManager.default.fileExists(atPath: out.path, isDirectory: &isDirectory) || !isDirectory.boolValue {
-                    alertMessage = IdentifiableString(value: "The output folder does not exist or is not a directory.".localized)
-                    return
-                }
+                    guard (selectionMode == .manualInput || folderA != nil), let b = folderB, let out = outputFolder else {
+                        alertMessage = IdentifiableString(value: "Please select all three folders.".localized)
+                        return
+                    }
 
-                if !FileManager.default.isWritableFile(atPath: out.path) {
-                    alertMessage = IdentifiableString(value: "You don't have permission to write to the output folder. Please reselect it.".localized)
-                    return
-                }
+                    var isDirectory: ObjCBool = false
+                    if !FileManager.default.fileExists(atPath: out.path, isDirectory: &isDirectory) || !isDirectory.boolValue {
+                        alertMessage = IdentifiableString(value: "The output folder does not exist or is not a directory.".localized)
+                        return
+                    }
 
-                logMessages = ["Syncing...".localized]
-                isSyncing = true
-                isCancelled = false
-                currentProgress = 0
-                copiedFiles = []
-                Task {
-                    let result = await syncFiles(from: folderA ?? URL(fileURLWithPath: "/"), and: b, to: out)
-                    await MainActor.run {
-                        logMessages = result.log
-                        totalCount = result.total
-                        isSyncing = false
-                        copiedFiles = result.copiedFiles
-                        if !isCancelled && !copiedFiles.isEmpty {
-                            NSWorkspace.shared.activateFileViewerSelecting(copiedFiles)
+                    if !FileManager.default.isWritableFile(atPath: out.path) {
+                        alertMessage = IdentifiableString(value: "You don't have permission to write to the output folder. Please reselect it.".localized)
+                        return
+                    }
+
+                    logMessages = ["Syncing...".localized]
+                    isSyncing = true
+                    isCancelled = false
+                    currentProgress = 0
+                    copiedFiles = []
+                    Task {
+                        let result = await syncFiles(from: folderA ?? URL(fileURLWithPath: "/"), and: b, to: out)
+                        await MainActor.run {
+                            logMessages = result.log
+                            totalCount = result.total
+                            isSyncing = false
+                            copiedFiles = result.copiedFiles
+                            if !isCancelled && !copiedFiles.isEmpty {
+                                NSWorkspace.shared.activateFileViewerSelecting(copiedFiles)
+                            }
                         }
                     }
+                } label: {
+                    Label("Start Sync".localized, systemImage: "arrow.triangle.2.circlepath")
                 }
-            }
-            .padding()
-            .background(isSyncing ? Color.gray : Color.blue)
-            .foregroundColor(.white)
-            .cornerRadius(10)
-            .disabled(isSyncing)
+                .buttonStyle(.borderedProminent)
+                .controlSize(.small)
+                .disabled(isSyncing)
 
-            Button("Show Logs".localized) {
-                isLogPresented = true
+                Button {
+                    isLogPresented = true
+                } label: {
+                    Label("Show Logs".localized, systemImage: "doc.text.magnifyingglass")
+                }
+                .buttonStyle(.bordered)
+                .controlSize(.small)
+                .disabled(logMessages.isEmpty)
             }
-            .padding(.bottom)
-            .disabled(logMessages.isEmpty)
+            .padding(.bottom, 2)
 
             if isSyncing {
                 ProgressView("Working...".localized + " \(currentProgress)/\(totalCount)")
