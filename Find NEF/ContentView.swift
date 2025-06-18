@@ -60,7 +60,7 @@ struct ContentView: View {
     var body: some View {
         VStack(spacing: 18) {
             // Folder A GroupBox
-            GroupBox(label: Label("Folder A (Photos):".localized, systemImage: "folder")) {
+            GroupBox(label: Label("Folder A (Photos):".localized, systemImage: "folder.fill")) {
                 HStack(alignment: .top, spacing: 12) {
                     VStack(alignment: .leading, spacing: 2) {
                         Text(folderA?.path ?? "None".localized)
@@ -91,14 +91,18 @@ struct ContentView: View {
                             folderAPath = url.path
                         }
                     } label: {
-                        Label("Select".localized, systemImage: "folder.badge.plus")
+                        Label("Select".localized, systemImage: "folder.badge.gearshape")
                     }
                     .buttonStyle(.borderedProminent)
                     .controlSize(.small)
                 }
+                .padding()
             }
+            .background(.ultraThinMaterial)
+            .clipShape(RoundedRectangle(cornerRadius: 12))
+            .padding(.horizontal)
             // Folder B GroupBox
-            GroupBox(label: Label("Folder B (RAW/XMP):".localized, systemImage: "externaldrive")) {
+            GroupBox(label: Label("Folder B (RAW/XMP):".localized, systemImage: "externaldrive.fill.badge.plus")) {
                 HStack(alignment: .top, spacing: 12) {
                     VStack(alignment: .leading, spacing: 2) {
                         Text(folderB?.path ?? "None".localized)
@@ -129,14 +133,18 @@ struct ContentView: View {
                             folderBPath = url.path
                         }
                     } label: {
-                        Label("Select".localized, systemImage: "folder.badge.plus")
+                        Label("Select".localized, systemImage: "folder.badge.gearshape")
                     }
                     .buttonStyle(.borderedProminent)
                     .controlSize(.small)
                 }
+                .padding()
             }
+            .background(.ultraThinMaterial)
+            .clipShape(RoundedRectangle(cornerRadius: 12))
+            .padding(.horizontal)
             // Output Folder GroupBox
-            GroupBox(label: Label("Output Folder:".localized, systemImage: "folder.fill.badge.plus")) {
+            GroupBox(label: Label("Output Folder:".localized, systemImage: "tray.and.arrow.down.fill")) {
                 HStack(alignment: .top, spacing: 12) {
                     VStack(alignment: .leading, spacing: 2) {
                         Text(outputFolder?.path ?? "None".localized)
@@ -167,12 +175,16 @@ struct ContentView: View {
                             outputFolderPath = url.path
                         }
                     } label: {
-                        Label("Select".localized, systemImage: "folder.badge.plus")
+                        Label("Select".localized, systemImage: "folder.badge.gearshape")
                     }
                     .buttonStyle(.borderedProminent)
                     .controlSize(.small)
                 }
+                .padding()
             }
+            .background(.ultraThinMaterial)
+            .clipShape(RoundedRectangle(cornerRadius: 12))
+            .padding(.horizontal)
 
             DisclosureGroup("Advanced Settings".localized, isExpanded: $showAdvancedOptions) {
                 VStack(alignment: .leading, spacing: 8) {
@@ -197,7 +209,11 @@ struct ContentView: View {
                         .help("If both skip and overwrite are off, existing files will be skipped with a log message.".localized)
                 }
                 .padding(.top, 6)
+                .padding()
             }
+            .background(.ultraThinMaterial)
+            .clipShape(RoundedRectangle(cornerRadius: 12))
+            .padding(.horizontal)
             .animation(.easeInOut, value: showAdvancedOptions)
 
             Picker("File Selection Mode".localized, selection: $selectionMode) {
@@ -222,7 +238,7 @@ struct ContentView: View {
                 Button {
                     validateRestoredPaths()
                 } label: {
-                    Label("Validate Folder Paths".localized, systemImage: "checkmark.shield")
+                    Label("Validate Folder Paths".localized, systemImage: "checkmark.seal.fill")
                 }
                 .buttonStyle(.borderedProminent)
                 .controlSize(.small)
@@ -268,7 +284,7 @@ struct ContentView: View {
                         }
                     }
                 } label: {
-                    Label("Start Sync".localized, systemImage: "arrow.triangle.2.circlepath")
+                    Label("Start Sync".localized, systemImage: "arrow.right.arrow.left.circle.fill")
                 }
                 .buttonStyle(.borderedProminent)
                 .controlSize(.small)
@@ -277,7 +293,7 @@ struct ContentView: View {
                 Button {
                     isLogPresented = true
                 } label: {
-                    Label("Show Logs".localized, systemImage: "doc.text.magnifyingglass")
+                    Label("Show Logs".localized, systemImage: "doc.richtext")
                 }
                 .buttonStyle(.bordered)
                 .controlSize(.small)
@@ -306,7 +322,8 @@ struct ContentView: View {
             .frame(maxHeight: 300)
         }
         .padding()
-        .frame(width: 500)
+        .frame(minWidth: 520)
+        .background(.quaternary.opacity(0.05))
         .onAppear {
             if !hasLaunchedBefore {
                 hasLaunchedBefore = true
