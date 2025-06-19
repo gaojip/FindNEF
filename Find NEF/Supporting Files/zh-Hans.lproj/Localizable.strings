@@ -1,67 +1,46 @@
-"Folder A (Photos):" = "照片文件夹 A：";
+"Folder A (Photos):" = "文件夹 A（照片）:";
+"Folder B (RAW/XMP):" = "文件夹 B（RAW/XMP）:";
+"Output Folder:" = "输出文件夹:";
 "Select" = "选择";
 "None" = "无";
-"Copy Path" = "复制路径";
-"Folder A path is invalid or not a folder." = "文件夹 A 的路径无效或不是文件夹。";
-"Folder A path is valid (restored from last session)." = "文件夹 A 路径有效（已从上次恢复）。";
-"Invalid" = "无效";
 "Valid" = "有效";
-
-"Folder B (RAW/XMP):" = "文件夹 B (RAW/XMP)：";
-"Folder B path is invalid or not a folder." = "文件夹 B 的路径无效或不是文件夹。";
-"Folder B path is valid (restored from last session)." = "文件夹 B 路径有效（已从上次恢复）。";
-
-"Output Folder:" = "导出文件夹：";
-"Output folder is invalid or not writable." = "导出文件夹无效或不可写。";
-"Output folder is valid (restored from last session)." = "导出文件夹有效（已从上次恢复）。";
-
-"Extensions for Folder A (comma separated, no dot):" = "文件夹 A 的扩展名（英文逗号分隔，不带点）：";
-"e.g. jpg, jpeg, png" = "例如：jpg, jpeg, png";
+"Invalid" = "无效";
+"Folder A path is invalid or not a folder." = "文件夹 A 路径无效或不是文件夹。";
+"Folder B path is invalid or not a folder." = "文件夹 B 路径无效或不是文件夹。";
+"Output folder is invalid or not writable." = "输出文件夹无效或不可写。";
+"Please select all three folders." = "请选择全部三个文件夹。";
+"You don't have permission to write to the output folder. Please reselect it." = "您没有权限写入输出文件夹，请重新选择。";
+"Syncing..." = "正在同步…";
+"Sync cancelled." = "同步已取消。";
+"No matching files found." = "未找到匹配的文件。";
+"Copied: %@" = "已复制：%@";
+"Failed to copy: %@ — %@" = "复制失败：%@ — %@";
+"Skipped (already exists): %@" = "已跳过（已存在）：%@";
+"Skipped (exists, overwrite disabled): %@" = "已跳过（存在但未启用覆盖）：%@";
+"Advanced Settings" = "高级设置";
+"Extensions for Folder A (comma separated, no dot):" = "文件夹 A 的扩展名（用逗号分隔，不加点）:";
+"Extensions for Folder B (comma separated, no dot):" = "文件夹 B 的扩展名（用逗号分隔，不加点）:";
 "Example: jpg, jpeg, png" = "示例：jpg, jpeg, png";
-
-"Extensions for Folder B (comma separated, no dot):" = "文件夹 B 的扩展名（英文逗号分隔，不带点）：";
 "Example: cr2, dng, arw" = "示例：cr2, dng, arw";
-
-"File Selection Mode" = "文件选择方式";
+"Skip files that already exist in output folder" = "跳过输出文件夹中已存在的文件";
+"Overwrite files that already exist in output folder" = "覆盖输出文件夹中已存在的文件";
+"If both skip and overwrite are off, existing files will be skipped with a log message." = "如果跳过和覆盖都关闭，现有文件将被跳过并记录日志。";
+"File Selection Mode" = "文件选择模式";
 "Use All Files in Folder A" = "使用文件夹 A 中的所有文件";
 "Enter File Names Manually" = "手动输入文件名";
-
 "Edit Input List" = "编辑输入列表";
-
-"Skip files that already exist in output folder" = "跳过导出目录中已存在的文件";
-"Overwrite files that already exist in output folder" = "覆盖导出目录中已存在的文件";
-"If both skip and overwrite are off, existing files will be skipped with a log message." = "如果跳过和覆盖都关闭，已存在的文件将被跳过，并记录日志。";
-
 "Validate Folder Paths" = "验证文件夹路径";
-
-"Please select all three folders." = "请选择所有三个文件夹。";
-"The output folder does not exist or is not a directory." = "导出文件夹不存在或不是一个目录。";
-"You don't have permission to write to the output folder. Please reselect it." = "你没有权限写入导出文件夹。请重新选择该文件夹。";
-
-"Syncing..." = "正在同步…";
+"Start Sync" = "开始同步";
+"Show Logs" = "显示日志";
 "Working..." = "处理中…";
 "Cancel" = "取消";
-"Start Sync" = "开始同步";
-
-"Show Logs" = "查看日志";
 "Log Output" = "日志输出";
 "Copy to Clipboard" = "复制到剪贴板";
 "Close" = "关闭";
-
-"Copied: %@" = "已复制：%@";
-"Skipped (already exists): %@" = "已跳过（文件已存在）：%@";
-"Skipped (exists, overwrite disabled): %@" = "已跳过（文件存在，禁止覆盖）：%@";
-"Failed to copy: %@ — %@" = "复制失败：%@ — %@";
-"No matching files found." = "未找到匹配的文件。";
-"Sync cancelled." = "同步已取消。";
-
-"Validation" = "验证";
-"OK" = "确定";
-
-"Enter file names from Folder A (no extensions)" = "从文件夹 A 中输入文件名（不含扩展名）";
+"Enter file names from Folder A (no extensions)" = "请输入文件夹 A 中的文件名（不含扩展名）";
 "Paste from Clipboard" = "从剪贴板粘贴";
 "Done" = "完成";
-
+"Validation" = "验证";
 "Please reselect Folder A" = "请重新选择文件夹 A";
 "Please reselect Folder B" = "请重新选择文件夹 B";
-"Please reselect Output Folder" = "请重新选择导出文件夹";
+"Please reselect Output Folder" = "请重新选择输出文件夹";

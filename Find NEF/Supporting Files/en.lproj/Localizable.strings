@@ -1,67 +1,46 @@
 "Folder A (Photos):" = "Folder A (Photos):";
+"Folder B (RAW/XMP):" = "Folder B (RAW/XMP):";
+"Output Folder:" = "Output Folder:";
 "Select" = "Select";
 "None" = "None";
-"Copy Path" = "Copy Path";
-"Folder A path is invalid or not a folder." = "Folder A path is invalid or not a folder.";
-"Folder A path is valid (restored from last session)." = "Folder A path is valid (restored from last session).";
-"Invalid" = "Invalid";
 "Valid" = "Valid";
-
-"Folder B (RAW/XMP):" = "Folder B (RAW/XMP):";
+"Invalid" = "Invalid";
+"Folder A path is invalid or not a folder." = "Folder A path is invalid or not a folder.";
 "Folder B path is invalid or not a folder." = "Folder B path is invalid or not a folder.";
-"Folder B path is valid (restored from last session)." = "Folder B path is valid (restored from last session).";
-
-"Output Folder:" = "Output Folder:";
 "Output folder is invalid or not writable." = "Output folder is invalid or not writable.";
-"Output folder is valid (restored from last session)." = "Output folder is valid (restored from last session).";
-
+"Please select all three folders." = "Please select all three folders.";
+"You don't have permission to write to the output folder. Please reselect it." = "You don't have permission to write to the output folder. Please reselect it.";
+"Syncing..." = "Syncing...";
+"Sync cancelled." = "Sync cancelled.";
+"No matching files found." = "No matching files found.";
+"Copied: %@" = "Copied: %@";
+"Failed to copy: %@ — %@" = "Failed to copy: %@ — %@";
+"Skipped (already exists): %@" = "Skipped (already exists): %@";
+"Skipped (exists, overwrite disabled): %@" = "Skipped (exists, overwrite disabled): %@";
+"Advanced Settings" = "Advanced Settings";
 "Extensions for Folder A (comma separated, no dot):" = "Extensions for Folder A (comma separated, no dot):";
-"e.g. jpg, jpeg, png" = "e.g. jpg, jpeg, png";
-"Example: jpg, jpeg, png" = "Example: jpg, jpeg, png";
-
 "Extensions for Folder B (comma separated, no dot):" = "Extensions for Folder B (comma separated, no dot):";
+"Example: jpg, jpeg, png" = "Example: jpg, jpeg, png";
 "Example: cr2, dng, arw" = "Example: cr2, dng, arw";
-
-"File Selection Mode" = "File Selection Mode";
-"Use All Files in Folder A" = "Use All Files in Folder A";
-"Enter File Names Manually" = "Enter File Names Manually";
-
-"Edit Input List" = "Edit Input List";
-
 "Skip files that already exist in output folder" = "Skip files that already exist in output folder";
 "Overwrite files that already exist in output folder" = "Overwrite files that already exist in output folder";
 "If both skip and overwrite are off, existing files will be skipped with a log message." = "If both skip and overwrite are off, existing files will be skipped with a log message.";
-
+"File Selection Mode" = "File Selection Mode";
+"Use All Files in Folder A" = "Use All Files in Folder A";
+"Enter File Names Manually" = "Enter File Names Manually";
+"Edit Input List" = "Edit Input List";
 "Validate Folder Paths" = "Validate Folder Paths";
-
-"Please select all three folders." = "Please select all three folders.";
-"The output folder does not exist or is not a directory." = "The output folder does not exist or is not a directory.";
-"You don't have permission to write to the output folder. Please reselect it." = "You don't have permission to write to the output folder. Please reselect it.";
-
-"Syncing..." = "Syncing...";
+"Start Sync" = "Start Sync";
+"Show Logs" = "Show Logs";
 "Working..." = "Working...";
 "Cancel" = "Cancel";
-"Start Sync" = "Start Sync";
-
-"Show Logs" = "Show Logs";
 "Log Output" = "Log Output";
 "Copy to Clipboard" = "Copy to Clipboard";
 "Close" = "Close";
-
-"Copied: %@" = "Copied: %@";
-"Skipped (already exists): %@" = "Skipped (already exists): %@";
-"Skipped (exists, overwrite disabled): %@" = "Skipped (exists, overwrite disabled): %@";
-"Failed to copy: %@ — %@" = "Failed to copy: %@ — %@";
-"No matching files found." = "No matching files found.";
-"Sync cancelled." = "Sync cancelled.";
-
-"Validation" = "Validation";
-"OK" = "OK";
-
 "Enter file names from Folder A (no extensions)" = "Enter file names from Folder A (no extensions)";
 "Paste from Clipboard" = "Paste from Clipboard";
 "Done" = "Done";
-
+"Validation" = "Validation";
 "Please reselect Folder A" = "Please reselect Folder A";
 "Please reselect Folder B" = "Please reselect Folder B";
 "Please reselect Output Folder" = "Please reselect Output Folder";
